@@ -4,13 +4,13 @@
 <div class="d-none d-md-block mb-4">
     <ul class="nav nav-tabs border-0" style="gap: 20px;">
         <li class="nav-item">
-            <a class="nav-link active fw-bold border-0 p-0 pb-2" href="#">Overview</a>
+            <a class="nav-link active fw-bold border-0 p-0 pb-2" href="#">Ringkasan</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-muted fw-bold border-0 p-0 pb-2" href="#">Audiences</a>
+            <a class="nav-link text-muted fw-bold border-0 p-0 pb-2" href="#">Dataset</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-muted fw-bold border-0 p-0 pb-2" href="#">Demographics</a>
+            <a class="nav-link text-muted fw-bold border-0 p-0 pb-2" href="#">Perbandingan</a>
         </li>
     </ul>
     <hr class="mt-0 opacity-10">
@@ -20,7 +20,7 @@
     <div class="col-md-3">
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
-                <p class="text-muted fw-medium mb-1">Dataset Images</p>
+                <p class="text-muted fw-medium mb-1">Total Citra Dataset</p>
                 <div class="d-flex align-items-center gap-2">
                     <h3 class="fw-bold m-0" style="font-size: 28px;">250</h3>
                     <span class="text-success small fw-bold"><i class="fa-solid fa-caret-up"></i> +1.2%</span>
@@ -32,7 +32,7 @@
     <div class="col-md-3">
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
-                <p class="text-muted fw-medium mb-1">Active Algorithms</p>
+                <p class="text-muted fw-medium mb-1">Algoritma Aktif</p>
                 <div class="d-flex align-items-center gap-2">
                     <h3 class="fw-bold m-0" style="font-size: 28px;">3</h3>
                     <span class="text-muted small">KNN, NB, C4.5</span>
@@ -44,7 +44,7 @@
     <div class="col-md-3">
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
-                <p class="text-muted fw-medium mb-1">Avg. Accuracy</p>
+                <p class="text-muted fw-medium mb-1">Rata-rata Akurasi</p>
                 <div class="d-flex align-items-center gap-2">
                     <h3 class="fw-bold m-0" style="font-size: 28px;">92.5%</h3>
                     <span class="text-success small fw-bold"><i class="fa-solid fa-caret-up"></i> +0.8%</span>
@@ -59,10 +59,10 @@
     <div class="col-md-3">
         <div class="card border-0 shadow-sm" style="background: var(--star-blue);">
             <div class="card-body p-4 text-white">
-                <p class="opacity-75 fw-medium mb-1">System Status</p>
+                <p class="opacity-75 fw-medium mb-1">Status Sistem</p>
                 <div class="d-flex align-items-center">
                     <span class="status-pulse"></span>
-                    <h3 class="fw-bold m-0 text-white">Active</h3>
+                    <h3 class="fw-bold m-0 text-white">Aktif</h3>
                 </div>
             </div>
         </div>
@@ -75,11 +75,11 @@
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
-                        <h5 class="card-title fw-bold m-0">Detection Statistics</h5>
-                        <p class="text-muted small">Comparison of corn disease detection results</p>
+                        <h5 class="card-title fw-bold m-0">Statistik Deteksi Penyakit</h5>
+                        <p class="text-muted small">Perbandingan hasil deteksi penyakit tanaman jagung</p>
                     </div>
                     <div class="dropdown">
-                        <button class="btn btn-light btn-sm dropdown-toggle" type="button">This Month</button>
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button">Bulan Ini</button>
                     </div>
                 </div>
                 <div style="position: relative; height:350px;">
@@ -92,14 +92,14 @@
     <div class="col-lg-4">
         <div class="card border-0 shadow-sm mb-4">
             <div class="card-body p-4">
-                <h5 class="fw-bold mb-3">Model Info</h5>
+                <h5 class="fw-bold mb-3">Informasi Model</h5>
                 <div class="d-flex flex-column gap-3">
                     <div class="p-3 bg-light rounded-3 border-start border-primary border-4 shadow-sm">
-                        <p class="small text-muted mb-1">Primary Algorithm</p>
+                        <p class="small text-muted mb-1">Algoritma Utama</p>
                         <p class="fw-bold mb-0">K-Nearest Neighbor (KNN)</p>
                     </div>
                     <div class="p-3 bg-light rounded-3 border-start border-success border-4 shadow-sm">
-                        <p class="small text-muted mb-1">Target Crop</p>
+                        <p class="small text-muted mb-1">Tanaman yang Diteliti</p>
                         <p class="fw-bold mb-0">Zea Mays (Jagung)</p>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
         
         <div class="mt-2 p-4 border border-dashed text-center">
             <p class="text-muted small mb-0">
-                Sistem Machine Learning untuk klasifikasi penyakit jagung: Healthy, Blight, dan Rust.
+                Sistem Machine Learning untuk klasifikasi penyakit tanaman jagung: Bulai, Hawar Daun, dan Bercak Daun.
             </p>
         </div>
     </div>
@@ -117,21 +117,20 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    // Parsing data dari Flask
     const stats = JSON.parse('{{ stats | tojson }}');
     const ctx = document.getElementById("resultChart").getContext("2d");
 
     new Chart(ctx, {
         type: "bar",
         data: {
-            labels: ["Healthy", "Blight", "Common Rust"],
+            labels: ["Sehat", "Hawar Daun", "Bercak Daun"],
             datasets: [{
-                label: "Detected Cases",
+                label: "Jumlah Terdeteksi",
                 data: [stats.Healthy, stats.Blight, stats.Rust],
                 backgroundColor: [
-                    "#1F3BB3", // Biru StarAdmin
-                    "#F95F53", // Merah
-                    "#FFAF00"  // Kuning
+                    "#1F3BB3",
+                    "#F95F53",
+                    "#FFAF00"
                 ],
                 borderRadius: 10,
                 barThickness: 50,
@@ -156,7 +155,7 @@
                     displayColors: false,
                     callbacks: {
                         label: function(context) {
-                            return ' Total: ' + context.raw + ' Images';
+                            return ' Total: ' + context.raw + ' Citra';
                         }
                     }
                 }

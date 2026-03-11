@@ -1,0 +1,77 @@
+/* ================= UPLOAD PAGE STYLING ================= */
+
+/* Area Dropzone */
+.upload-area {
+    border: 2px dashed #D1D5DB;
+    background-color: #F9FAFB;
+    border-radius: 15px;
+    padding: 60px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    border-color: #1F3BB3;
+    background-color: rgba(31, 59, 179, 0.02);
+}
+
+.upload-icon {
+    transition: transform 0.3s ease;
+}
+
+.upload-area:hover .upload-icon {
+    transform: translateY(-10px);
+}
+
+/* Preview Image Styling */
+.preview-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#preview {
+    border: 2px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #1F3BB3 !important;
+    border-color: #1F3BB3 !important;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(31, 59, 179, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(31, 59, 179, 0.3);
+}
+
+.btn-primary:disabled {
+    background-color: #A5B4FC !important;
+    border-color: #A5B4FC !important;
+}
+
+/* Animasi sederhana saat elemen muncul */
+#previewContainer {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Penyesuaian Mobile */
+@media (max-width: 768px) {
+    .upload-area {
+        padding: 40px 10px;
+    }
+    
+    .upload-area h5 {
+        font-size: 16px;
+    }
+}

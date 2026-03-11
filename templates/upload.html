@@ -1,56 +1,114 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold text-dark m-0">Detection Lab</h2>
+        <p class="text-muted small">Upload citra daun jagung untuk analisis penyakit</p>
+    </div>
+    <span class="badge bg-primary px-3 py-2 rounded-pill">Model: KNN & NB</span>
+</div>
 
-<h2 class="mb-4">Upload Corn Leaf Image</h2>
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-5">
+                <form action="/predict" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <div class="upload-area mb-4" id="dropZone" onclick="document.getElementById('fileInput').click()">
+                        <div class="upload-icon mb-3">
+                            <i class="fa-solid fa-cloud-arrow-up text-primary" style="font-size: 50px;"></i>
+                        </div>
+                        <h5 class="fw-bold">Klik atau seret gambar ke sini</h5>
+                        <p class="text-muted small">Format didukung: JPG, PNG, JPEG (Maks. 5MB)</p>
+                        
+                        <input type="file" name="image" id="fileInput" class="d-none" accept="image/*" onchange="previewImage(event)">
+                    </div>
 
-<div class="card">
-    <div class="card-body">
+                    <div id="previewContainer" class="mb-4 text-center d-none">
+                        <div class="preview-wrapper position-relative d-inline-block">
+                            <img id="preview" src="" class="img-fluid rounded-3 border shadow-sm" style="max-height: 400px;">
+                            <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2 rounded-circle" onclick="resetUpload()">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
 
-        <form action="/predict" method="post" enctype="multipart/form-data">
-
-            <div class="mb-3">
-
-                <label class="form-label">Choose Corn Leaf Image</label>
-
-                <input type="file" name="image" class="form-control" accept="image/*" onchange="previewImage(event)">
-
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg fw-bold py-3" id="btnSubmit" disabled>
+                            <i class="fa-solid fa-microchip me-2"></i> Mulai Deteksi Penyakit
+                        </button>
+                    </div>
+                </form>
             </div>
+        </div>
 
-            <!-- Preview Image -->
-            <div class="mb-3 text-center">
-
-                <img id="preview" src="" style="max-width:300px; display:none;" class="img-fluid border">
-
+        <div class="mt-4 p-3 bg-light rounded-3 border-start border-primary border-4">
+            <div class="d-flex gap-3 align-items-center">
+                <i class="fa-solid fa-circle-info text-primary fs-4"></i>
+                <p class="small text-muted mb-0">
+                    <strong>Tips:</strong> Pastikan gambar daun jagung terlihat jelas, fokus, dan memiliki pencahayaan yang cukup untuk hasil akurasi terbaik.
+                </p>
             </div>
-
-            <button type="submit" class="btn btn-success">
-                Detect Disease
-            </button>
-
-        </form>
-
+        </div>
     </div>
 </div>
 
-{% endblock %}
-
 <script>
-
     function previewImage(event) {
+        const fileInput = event.target;
+        const dropZone = document.getElementById('dropZone');
+        const previewContainer = document.getElementById('previewContainer');
+        const preview = document.getElementById('preview');
+        const btnSubmit = document.getElementById('btnSubmit');
 
-        const reader = new FileReader();
-
-        reader.onload = function () {
-
-            const preview = document.getElementById('preview');
-            preview.src = reader.result;
-            preview.style.display = "block";
-
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                dropZone.classList.add('d-none');
+                previewContainer.classList.remove('d-none');
+                btnSubmit.disabled = false;
+            }
+            reader.readAsDataURL(fileInput.files[0]);
         }
-
-        reader.readAsDataURL(event.target.files[0]);
-
     }
 
+    function resetUpload() {
+        const fileInput = document.getElementById('fileInput');
+        const dropZone = document.getElementById('dropZone');
+        const previewContainer = document.getElementById('previewContainer');
+        const btnSubmit = document.getElementById('btnSubmit');
+        
+        fileInput.value = "";
+        dropZone.classList.remove('d-none');
+        previewContainer.classList.add('d-none');
+        btnSubmit.disabled = true;
+    }
+
+    // Drag and Drop Logic
+    const dropZone = document.getElementById('dropZone');
+    
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = "#1F3BB3";
+            dropZone.style.backgroundColor = "rgba(31, 59, 179, 0.05)";
+        }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = "#D1D5DB";
+            dropZone.style.backgroundColor = "#F9FAFB";
+        }, false);
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        document.getElementById('fileInput').files = files;
+        previewImage({target: {files: files}});
+    }, false);
 </script>
+{% endblock %}

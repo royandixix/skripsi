@@ -1,19 +1,19 @@
 <div class="sidebar-menu">
-    <div class="sidebar-title">Main</div>
+    <div class="sidebar-title">Menu Utama</div>
 
     <div class="nav-container">
         <a href="{{ url_for('index') }}"
            class="nav-link-custom {{ 'active' if request.endpoint == 'index' }}">
             <div class="icon-box-star"><i class="fa-solid fa-grid-2"></i></div>
-            <span class="menu-text">Dashboard</span>
+            <span class="menu-text">Beranda</span>
         </a>
 
-        <div class="sidebar-title">UI Elements</div>
+        <div class="sidebar-title">Fitur Sistem</div>
 
         <a href="{{ url_for('upload') }}"
            class="nav-link-custom {{ 'active' if request.endpoint == 'upload' }}">
             <div class="icon-box-star"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-            <span class="menu-text">Upload Image</span>
+            <span class="menu-text">Unggah Gambar</span>
         </a>
 
         <a href="{{ url_for('dataset') }}"
@@ -25,7 +25,7 @@
         <a href="{{ url_for('accuracy') }}"
            class="nav-link-custom {{ 'active' if request.endpoint == 'accuracy' }}">
             <div class="icon-box-star"><i class="fa-solid fa-chart-line"></i></div>
-            <span class="menu-text">Model Accuracy</span>
+            <span class="menu-text">Akurasi Model</span>
         </a>
     </div>
 </div>
