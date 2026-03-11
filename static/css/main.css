@@ -1,0 +1,202 @@
+/* ================= GLOBAL & COLORS ================= */
+:root {
+    --bg-body: #F4F5F7;
+    --sidebar-width: 260px;
+    --star-blue: #1F3BB3; /* Warna biru khas StarAdmin */
+    --text-dark: #010101;
+    --text-muted: #8D8D8D;
+    --white: #ffffff;
+    --border-color: #F3F3F3;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* Smooth Transition */
+* {
+    transition: all 0.2s ease-in-out;
+}
+
+/* ================= HEADER (NAVBAR) ================= */
+.app-navbar {
+    background: var(--white);
+    height: 90px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: var(--sidebar-width);
+    z-index: 1030;
+    display: flex;
+    align-items: center;
+    padding: 0 35px;
+    box-shadow: none;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-left .welcome-text {
+    font-size: 24px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.navbar-left .welcome-sub-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.search-box {
+    background: #F4F5F7;
+    border-radius: 8px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    width: 200px;
+}
+
+.icon-nav {
+    font-size: 20px;
+    color: #6B7280;
+    cursor: pointer;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* ================= SIDEBAR (STAR STYLE) ================= */
+.sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--white);
+    padding: 20px 0;
+    z-index: 1040;
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 15px 25px 10px;
+    letter-spacing: 1px;
+}
+
+.nav-link-custom {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    text-decoration: none;
+    color: #484848;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.icon-box-star {
+    width: 20px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    color: #6B7280;
+}
+
+/* Hover State */
+.nav-link-custom:hover {
+    background: #f8f9fa;
+    color: var(--star-blue);
+}
+
+/* Active State */
+.nav-link-custom.active {
+    background: #f0f3ff;
+    color: var(--star-blue);
+    font-weight: 600;
+    border-radius: 0 20px 20px 0;
+    margin-right: 15px;
+}
+
+.nav-link-custom.active .icon-box-star i {
+    color: var(--star-blue);
+}
+
+/* ================= MAIN CONTENT ================= */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 120px 35px 35px 35px; /* Jarak atas agar di bawah header */
+    min-height: 100vh;
+}
+
+/* ================= CARDS (FLOATING STYLE) ================= */
+.card {
+    border: none;
+    border-radius: 15px;
+    background: var(--white);
+    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.03);
+    margin-bottom: 30px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    padding: 30px 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+    color: var(--text-muted);
+    font-size: 13px;
+    background: transparent;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+    .sidebar-wrapper {
+        transform: translateX(-100%);
+    }
+    
+    .sidebar-wrapper.sidebar-open {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 110px 15px 15px 15px;
+    }
+
+    .app-navbar {
+        left: 0;
+        padding: 0 15px;
+    }
+
+    .navbar-left .welcome-text {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,179 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="d-none d-md-block mb-4">
+    <ul class="nav nav-tabs border-0" style="gap: 20px;">
+        <li class="nav-item">
+            <a class="nav-link active fw-bold border-0 p-0 pb-2" href="#">Overview</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-muted fw-bold border-0 p-0 pb-2" href="#">Audiences</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-muted fw-bold border-0 p-0 pb-2" href="#">Demographics</a>
+        </li>
+    </ul>
+    <hr class="mt-0 opacity-10">
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <p class="text-muted fw-medium mb-1">Dataset Images</p>
+                <div class="d-flex align-items-center gap-2">
+                    <h3 class="fw-bold m-0" style="font-size: 28px;">250</h3>
+                    <span class="text-success small fw-bold"><i class="fa-solid fa-caret-up"></i> +1.2%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <p class="text-muted fw-medium mb-1">Active Algorithms</p>
+                <div class="d-flex align-items-center gap-2">
+                    <h3 class="fw-bold m-0" style="font-size: 28px;">3</h3>
+                    <span class="text-muted small">KNN, NB, C4.5</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <p class="text-muted fw-medium mb-1">Avg. Accuracy</p>
+                <div class="d-flex align-items-center gap-2">
+                    <h3 class="fw-bold m-0" style="font-size: 28px;">92.5%</h3>
+                    <span class="text-success small fw-bold"><i class="fa-solid fa-caret-up"></i> +0.8%</span>
+                </div>
+                <div class="accuracy-progress">
+                    <div class="accuracy-value" style="width: 92.5%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm" style="background: var(--star-blue);">
+            <div class="card-body p-4 text-white">
+                <p class="opacity-75 fw-medium mb-1">System Status</p>
+                <div class="d-flex align-items-center">
+                    <span class="status-pulse"></span>
+                    <h3 class="fw-bold m-0 text-white">Active</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h5 class="card-title fw-bold m-0">Detection Statistics</h5>
+                        <p class="text-muted small">Comparison of corn disease detection results</p>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-light btn-sm dropdown-toggle" type="button">This Month</button>
+                    </div>
+                </div>
+                <div style="position: relative; height:350px;">
+                    <canvas id="resultChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+                <h5 class="fw-bold mb-3">Model Info</h5>
+                <div class="d-flex flex-column gap-3">
+                    <div class="p-3 bg-light rounded-3 border-start border-primary border-4 shadow-sm">
+                        <p class="small text-muted mb-1">Primary Algorithm</p>
+                        <p class="fw-bold mb-0">K-Nearest Neighbor (KNN)</p>
+                    </div>
+                    <div class="p-3 bg-light rounded-3 border-start border-success border-4 shadow-sm">
+                        <p class="small text-muted mb-1">Target Crop</p>
+                        <p class="fw-bold mb-0">Zea Mays (Jagung)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-2 p-4 border border-dashed text-center">
+            <p class="text-muted small mb-0">
+                Sistem Machine Learning untuk klasifikasi penyakit jagung: Healthy, Blight, dan Rust.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // Parsing data dari Flask
+    const stats = JSON.parse('{{ stats | tojson }}');
+    const ctx = document.getElementById("resultChart").getContext("2d");
+
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Healthy", "Blight", "Common Rust"],
+            datasets: [{
+                label: "Detected Cases",
+                data: [stats.Healthy, stats.Blight, stats.Rust],
+                backgroundColor: [
+                    "#1F3BB3", // Biru StarAdmin
+                    "#F95F53", // Merah
+                    "#FFAF00"  // Kuning
+                ],
+                borderRadius: 10,
+                barThickness: 50,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+                duration: 2000,
+                easing: 'easeOutQuart'
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#fff',
+                    titleColor: '#010101',
+                    bodyColor: '#8D8D8D',
+                    borderColor: '#f0f0f0',
+                    borderWidth: 1,
+                    padding: 12,
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return ' Total: ' + context.raw + ' Images';
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: { display: false },
+                    ticks: { font: { family: 'Inter', weight: '500' } }
+                },
+                y: {
+                    beginAtZero: true,
+                    border: { display: false },
+                    grid: { color: '#F0F0F0', drawTicks: false },
+                    ticks: { stepSize: 10 }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

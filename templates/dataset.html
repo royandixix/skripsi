@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2 class="mb-4">Corn Disease Dataset</h2>
+
+    <p class="text-muted mb-4">
+        Dataset used to train the machine learning model for corn disease detection.
+    </p>
+
+    <div class="row">
+
+        <!-- Healthy Corn -->
+        <div class="col-md-4">
+            <div class="card">
+
+                <img src="{{ url_for('static', filename='images/healthy.jpg') }}" class="card-img-top"
+                    alt="Healthy Corn">
+
+                <div class="card-body">
+                    <h5 class="card-title">Healthy Corn Leaf</h5>
+
+                    <p class="card-text">
+                        Sample image of healthy corn leaf used as dataset.
+                    </p>
+
+                    <span class="badge bg-success">Healthy</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Leaf Blight -->
+        <div class="col-md-4">
+            <div class="card">
+
+                <img src="{{ url_for('static', filename='images/blight.jpg') }}" class="card-img-top" alt="Leaf Blight">
+
+                <div class="card-body">
+                    <h5 class="card-title">Corn Leaf Blight</h5>
+
+                    <p class="card-text">
+                        Image example of corn leaf infected by blight disease.
+                    </p>
+
+                    <span class="badge bg-danger">Disease</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Rust -->
+        <div class="col-md-4">
+            <div class="card">
+
+                <img src="{{ url_for('static', filename='images/rust.jpg') }}" class="card-img-top" alt="Rust Disease">
+
+                <div class="card-body">
+                    <h5 class="card-title">Common Rust</h5>
+
+                    <p class="card-text">
+                        Rust disease sample used in classification dataset.
+                    </p>
+
+                    <span class="badge bg-warning text-dark">Rust</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

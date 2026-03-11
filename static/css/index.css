@@ -1,0 +1,152 @@
+/* ================= DASHBOARD SPECIFIC (StarAdmin Style) ================= */
+
+/* Tab Navigation Area */
+.nav-tabs .nav-link {
+    transition: all 0.3s ease;
+    font-size: 14px;
+    border: none;
+    padding-bottom: 12px;
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--star-blue) !important;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--star-blue) !important;
+    border-bottom: 2px solid var(--star-blue) !important;
+    background: transparent !important;
+}
+
+/* Card Improvements & Interactive Effects */
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
+}
+
+/* Decorative corner element for cards */
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, transparent 50%, rgba(31, 59, 179, 0.02) 50%);
+    pointer-events: none;
+}
+
+/* Typography for stats figures */
+.card h3 {
+    letter-spacing: -0.5px;
+    color: #010101;
+}
+
+/* Percentage indicators (badge-like) */
+.text-success.small {
+    font-size: 12px;
+    background: rgba(30, 200, 110, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Info Boxes on the right column */
+.bg-light.rounded-3 {
+    background-color: #F4F5F7 !important;
+    border-left: 5px solid !important;
+    transition: background 0.2s;
+}
+
+.bg-light.rounded-3:hover {
+    background-color: #EBEDF0 !important;
+}
+
+/* Chart Canvas styling */
+canvas#resultChart {
+    filter: drop-shadow(0px 10px 10px rgba(31, 59, 179, 0.05));
+}
+
+/* Styling Bar Akurasi (Progress bar visual) */
+.accuracy-progress {
+    height: 4px;
+    border-radius: 10px;
+    background: #eeeeee;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.accuracy-value {
+    height: 100%;
+    background: var(--star-blue);
+    /* Width dikontrol via inline style atau script */
+}
+
+/* System Status Pulse Animation */
+.status-pulse {
+    width: 8px;
+    height: 8px;
+    background: #52CD95;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    box-shadow: 0 0 0 rgba(82, 205, 149, 0.4);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(82, 205, 149, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(82, 205, 149, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(82, 205, 149, 0); }
+}
+
+/* Dashed Container (Bottom Section) */
+.border-dashed {
+    border: 2px dashed #D1D5DB !important;
+    background-color: #F9FAFB !important;
+    padding: 25px !important;
+    border-radius: 12px !important;
+}
+
+/* Dropdown/Button styling */
+.btn-light.btn-sm {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 15px;
+    border-radius: 6px;
+}
+
+/* Color Palette for Disease Categories */
+.status-healthy { color: #1f3bb3; }
+.status-blight { color: #f95f53; }
+.status-rust { color: #ffaf00; }
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    .card h3 {
+        font-size: 22px;
+    }
+    
+    .nav-tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-tabs::-webkit-scrollbar {
+        display: none; /* Sembunyikan scrollbar di mobile agar bersih */
+    }
+}

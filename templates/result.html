@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Prediction Result</h2>
+
+<div class="card text-center">
+
+    <div class="card-body">
+
+        <img src="{{ image_path }}" class="img-fluid mb-3" style="max-width:300px">
+
+        <h3>
+
+            Prediction :
+
+            <span class="badge bg-success">
+
+                {{ prediction }}
+
+            </span>
+
+        </h3>
+
+        <a href="/upload" class="btn btn-primary mt-3">
+
+            Upload Again
+
+        </a>
+
+    </div>
+    
+</div>
+
+{% endblock %}

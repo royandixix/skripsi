@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Upload Corn Leaf Image</h2>
+
+<div class="card">
+    <div class="card-body">
+
+        <form action="/predict" method="post" enctype="multipart/form-data">
+
+            <div class="mb-3">
+
+                <label class="form-label">Choose Corn Leaf Image</label>
+
+                <input type="file" name="image" class="form-control" accept="image/*" onchange="previewImage(event)">
+
+            </div>
+
+            <!-- Preview Image -->
+            <div class="mb-3 text-center">
+
+                <img id="preview" src="" style="max-width:300px; display:none;" class="img-fluid border">
+
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Detect Disease
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+
+<script>
+
+    function previewImage(event) {
+
+        const reader = new FileReader();
+
+        reader.onload = function () {
+
+            const preview = document.getElementById('preview');
+            preview.src = reader.result;
+            preview.style.display = "block";
+
+        }
+
+        reader.readAsDataURL(event.target.files[0]);
+
+    }
+
+</script>
