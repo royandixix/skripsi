@@ -1,77 +1,90 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
-<div class="container">
-
-    <h2 class="mb-4">Corn Disease Dataset</h2>
-
-    <p class="text-muted mb-4">
-        Dataset used to train the machine learning model for corn disease detection.
-    </p>
-
-    <div class="row">
-
-        <!-- Healthy Corn -->
-        <div class="col-md-4">
-            <div class="card">
-
-                <img src="{{ url_for('static', filename='images/healthy.jpg') }}" class="card-img-top"
-                    alt="Healthy Corn">
-
-                <div class="card-body">
-                    <h5 class="card-title">Healthy Corn Leaf</h5>
-
-                    <p class="card-text">
-                        Sample image of healthy corn leaf used as dataset.
-                    </p>
-
-                    <span class="badge bg-success">Healthy</span>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Leaf Blight -->
-        <div class="col-md-4">
-            <div class="card">
-
-                <img src="{{ url_for('static', filename='images/blight.jpg') }}" class="card-img-top" alt="Leaf Blight">
-
-                <div class="card-body">
-                    <h5 class="card-title">Corn Leaf Blight</h5>
-
-                    <p class="card-text">
-                        Image example of corn leaf infected by blight disease.
-                    </p>
-
-                    <span class="badge bg-danger">Disease</span>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Rust -->
-        <div class="col-md-4">
-            <div class="card">
-
-                <img src="{{ url_for('static', filename='images/rust.jpg') }}" class="card-img-top" alt="Rust Disease">
-
-                <div class="card-body">
-                    <h5 class="card-title">Common Rust</h5>
-
-                    <p class="card-text">
-                        Rust disease sample used in classification dataset.
-                    </p>
-
-                    <span class="badge bg-warning text-dark">Rust</span>
-                </div>
-
-            </div>
-        </div>
-
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class=" text-dark m-0">Dataset Citra Penyakit Tanaman Jagung</h2>
+        <p class="text-muted small">Kumpulan citra latih untuk klasifikasi algoritma C4.5, Naïve Bayes, dan K-Nearest Neighbor</p>
     </div>
-
+    <div class="dataset-stats d-flex gap-3">
+        <div class="text-center">
+            <h5 class=" m-0">3</h5>
+            <small class="text-muted">Kategori</small>
+        </div>
+        <div class="text-center">
+            <h5 class=" m-0">250+</h5>
+            <small cl   ass="text-muted">Sampel</small>
+        </div>
+    </div>
 </div>
 
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card card-dataset border-0 shadow-sm h-100">
+            <div class="img-container">
+                <img src="{{ url_for('static', filename='images/healthy.jpg') }}" class="card-img-top" alt="Daun Jagung Sehat">
+                <div class="img-overlay">
+                    <span class="badge bg-success">Sehat</span>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h5 class="card-title ">Daun Jagung Sehat</h5>
+                <p class="card-text text-muted small">
+                    Sampel citra daun jagung dalam kondisi normal tanpa infeksi patogen. Karakteristik: Hijau segar, permukaan rata dan tidak terdapat bercak.
+                </p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <span class="text-primary small ">Dataset Latih</span>
+                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3">Detail</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card card-dataset border-0 shadow-sm h-100">
+            <div class="img-container">
+                <img src="{{ url_for('static', filename='images/blight.jpg') }}" class="card-img-top" alt="Hawar Daun">
+                <div class="img-overlay">
+                    <span class="badge bg-danger">Penyakit</span>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h5 class="card-title ">Hawar Daun</h5>
+                <p class="card-text text-muted small">
+                    Disebabkan jamur <em>Helminthosporium turcicum</em>. Karakteristik: Bercak memanjang berwarna coklat abu-abu dengan tepi kuning yang menyebar pada daun.
+                </p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <span class="text-primary small ">Dataset Latih</span>
+                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3">Detail</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card card-dataset border-0 shadow-sm h-100">
+            <div class="img-container">
+                <img src="{{ url_for('static', filename='images/rust.jpg') }}" class="card-img-top" alt="Bercak Daun">
+                <div class="img-overlay">
+                    <span class="badge bg-warning text-dark">Penyakit</span>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h5 class="card-title ">Bercak Daun</h5>
+                <p class="card-text text-muted small">
+                    Disebabkan jamur <em>Cercospora zeae-maydis</em>. Karakteristik: Bercak kecil persegi panjang berwarna abu-abu dengan tepi coklat yang menyebar di permukaan daun.
+                </p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <span class="text-primary small ">Dataset Latih</span>
+                    <button class="btn btn-outline-primary btn-sm rounded-pill px-3">Detail</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5 p-4 bg-white border rounded-3 shadow-sm text-center">
+    <h6 class=" mb-2">Penyimpanan Dataset</h6>
+    <p class="text-muted small mb-0">Semua data citra disimpan secara digital dan telah melalui tahap pra-pemrosesan (resize 224x224, grayscale, dan normalisasi) sebelum diproses oleh algoritma klasifikasi C4.5, Naïve Bayes, dan K-Nearest Neighbor.</p>
+</div>
 {% endblock %}

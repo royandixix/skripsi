@@ -1,0 +1,64 @@
+/* ================= RESULT PAGE STYLING ================= */
+
+.bg-success-subtle { background-color: rgba(30, 200, 110, 0.1) !important; }
+.bg-danger-subtle { background-color: rgba(249, 95, 83, 0.1) !important; }
+
+/* Wrapper Gambar dengan Animasi Scanner */
+.result-image-wrapper {
+    position: relative;
+    display: inline-block;
+    max-width: 350px;
+    width: 100%;
+}
+
+.result-image-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Garis Scanner Bergerak */
+.scanner-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--star-blue);
+    box-shadow: 0 0 15px 2px var(--star-blue);
+    animation: scan 3s infinite ease-in-out;
+    opacity: 0.7;
+}
+
+@keyframes scan {
+    0% { top: 0%; }
+    50% { top: 100%; }
+    100% { top: 0%; }
+}
+
+/* Typography */
+.display-6 {
+    letter-spacing: -1px;
+}
+
+/* Button & Shadow */
+.btn-primary {
+    background-color: #1F3BB3 !important;
+    border-color: #1F3BB3 !important;
+    box-shadow: 0 4px 12px rgba(31, 59, 179, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(31, 59, 179, 0.3);
+}
+
+/* Card Entry Animation */
+.card {
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}

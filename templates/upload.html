@@ -3,10 +3,10 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h2 class="fw-bold text-dark m-0">Detection Lab</h2>
-        <p class="text-muted small">Upload citra daun jagung untuk analisis penyakit</p>
+        <h2 class=" text-dark m-0">Unggah Citra Daun Jagung</h2>
+        <p class="text-muted small">Upload citra daun jagung untuk analisis dan deteksi penyakit</p>
     </div>
-    <span class="badge bg-primary px-3 py-2 rounded-pill">Model: KNN & NB</span>
+    <span class="badge bg-primary px-3 py-2 rounded-pill">Model: KNN, Naïve Bayes & C4.5</span>
 </div>
 
 <div class="row justify-content-center">
@@ -18,7 +18,7 @@
                         <div class="upload-icon mb-3">
                             <i class="fa-solid fa-cloud-arrow-up text-primary" style="font-size: 50px;"></i>
                         </div>
-                        <h5 class="fw-bold">Klik atau seret gambar ke sini</h5>
+                        <h5 class="">Klik atau seret gambar ke sini</h5>
                         <p class="text-muted small">Format didukung: JPG, PNG, JPEG (Maks. 5MB)</p>
                         
                         <input type="file" name="image" id="fileInput" class="d-none" accept="image/*" onchange="previewImage(event)">
@@ -34,8 +34,8 @@
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-lg fw-bold py-3" id="btnSubmit" disabled>
-                            <i class="fa-solid fa-microchip me-2"></i> Mulai Deteksi Penyakit
+                        <button type="submit" class="btn btn-primary btn-lg  py-3" id="btnSubmit" disabled>
+                            <i class="fa-solid fa-microchip me-2"></i> Mulai Deteksi Penyakit Tanaman Jagung
                         </button>
                     </div>
                 </form>
@@ -46,7 +46,7 @@
             <div class="d-flex gap-3 align-items-center">
                 <i class="fa-solid fa-circle-info text-primary fs-4"></i>
                 <p class="small text-muted mb-0">
-                    <strong>Tips:</strong> Pastikan gambar daun jagung terlihat jelas, fokus, dan memiliki pencahayaan yang cukup untuk hasil akurasi terbaik.
+                    <strong>Tips:</strong> Pastikan citra daun jagung terlihat jelas, fokus, dan memiliki pencahayaan yang cukup agar sistem dapat mendeteksi penyakit bulai, hawar daun, dan bercak daun secara akurat.
                 </p>
             </div>
         </div>
@@ -85,7 +85,7 @@
         btnSubmit.disabled = true;
     }
 
-    // Drag and Drop Logic
+    // Logika Drag and Drop
     const dropZone = document.getElementById('dropZone');
     
     ['dragenter', 'dragover'].forEach(eventName => {
